@@ -1,0 +1,6 @@
+
+State Machine - |exp2|ThdbDA:ThdbDA0|wave_sel
+Name wave_sel.00 wave_sel.10 wave_sel.01 
+wave_sel.00 0 0 0 
+wave_sel.01 1 0 1 
+wave_sel.10 1 1 0 
