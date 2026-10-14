@@ -1,12 +1,12 @@
-Fitter Status : Successful - Fri Oct 09 22:37:48 2026
+Fitter Status : Successful - Wed Oct 14 09:15:20 2026
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : exp2
 Top-level Entity Name : exp2
 Family : Cyclone V
 Device : 5CSXFC6D6F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 591 / 41,910 ( 1 % )
-Total registers : 1601
+Logic utilization (in ALMs) : 604 / 41,910 ( 1 % )
+Total registers : 1643
 Total pins : 40 / 499 ( 8 % )
 Total virtual pins : 0
 Total block memory bits : 88,064 / 5,662,720 ( 2 % )

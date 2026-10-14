@@ -1,0 +1,59 @@
+# ========================================
+# Quartus generated folders
+# ========================================
+
+**/db/
+**/incremental_db/
+**/output_files/
+**/simulation/
+**/greybox_tmp/
+**/qdb/
+
+
+# ========================================
+# Quartus generated / temporary files
+# ========================================
+
+*.rpt
+*.summary
+*.done
+*.jdi
+*.smsg
+*.chg
+*.eqn
+*.pin
+*.sof
+*.pof
+*.rbf
+
+
+# Quartus workspace / UI state
+*.qws
+
+
+# ========================================
+# Temporary / backup files
+# ========================================
+
+*.bak
+*.tmp
+*.temp
+*~
+*.orig
+
+
+# ========================================
+# OS generated files
+# ========================================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# ========================================
+# Editor generated files
+# ========================================
+
+.vscode/
+.idea/
