@@ -1,3 +1,4 @@
+
 module ThdbDA(
     PLL_OUT_DAC0,
     PLL_OUT_DAC1,
@@ -19,33 +20,20 @@ input [3:0] KEY;
 input rst_n;
 input CLOCK_100;
 
+reg descending;
+
 reg [13:0] DAC_DA;
 
 
-// 固定周期随机幅度脉冲参数
+parameter [13:0] A1 = 14'h3FFF;
+parameter [13:0] A2 = 14'h37FF;
+parameter [13:0] A3 = 14'h2FFF;
 
-// 16位LFSR伪随机数
-reg [15:0] lfsr;
+reg [13:0] HeightMax = A1;
+reg [13:0] increment = 14'h131;
 
-// 当前脉冲幅度
-reg [13:0] pulse_amp;
-
-// 脉冲周期计数器
-reg [15:0] pulse_count;
-
-
-parameter [15:0] PULSE_PERIOD = 16'd160;
-
-parameter [15:0] PULSE_WIDTH  = 16'd32;
-
-
-// 随机脉冲幅度：
-// 0x3000 ~ 0x3FFF
-wire [13:0] random_amp;
-
-assign random_amp =
-       14'h3000
-     + {2'b00, lfsr[11:0]};
+//0=A1，1=A2，2=A3
+reg [1:0] wave_sel = 2'd0;
 
 
 
@@ -59,45 +47,64 @@ begin
 
     if (!rst_n)
     begin
-        DAC_DA      <= 14'b0;
+        DAC_DA     <= 14'b0;
+        descending <= 1'b0;
 
-        lfsr        <= 16'hACE1;
-
-  
-        pulse_count <= 16'd0;
-
-        pulse_amp   <= 14'h3CE1;
+        HeightMax  <= A1;
+        wave_sel   <= 2'd0;
     end
 
     else
     begin
 
-        lfsr <= {
-            lfsr[14:0],
-            lfsr[15] ^ lfsr[13]
-                     ^ lfsr[12]
-                     ^ lfsr[10]
-        };
-
-
-        if (pulse_count >= PULSE_PERIOD - 16'd1)
+        if (descending)
         begin
-            pulse_count <= 16'd0;
+            DAC_DA <= DAC_DA - increment;
 
-            pulse_amp <= random_amp;
+            if (DAC_DA < increment + increment)
+            begin
+                descending <= 1'b0;
+
+                case (wave_sel)
+
+                    2'd0:
+                    begin
+                        HeightMax <= A2;
+                        wave_sel  <= 2'd1;
+                    end
+
+                    2'd1:
+                    begin
+                        HeightMax <= A3;
+                        wave_sel  <= 2'd2;
+                    end
+
+                    default:
+                    begin
+                        HeightMax <= A1;
+                        wave_sel  <= 2'd0;
+                    end
+
+                endcase
+            end
+
+            else
+                ;
+
         end
+
+
         else
         begin
-            pulse_count <= pulse_count + 16'd1;
+            DAC_DA <= DAC_DA + increment;
+
+            if (DAC_DA > HeightMax - increment - increment)
+                descending <= 1'b1;
+            else
+                ;
         end
-
-
-        if (pulse_count < PULSE_WIDTH)
-            DAC_DA <= pulse_amp;
-        else
-            DAC_DA <= 14'b0;
 
     end
-end              
+end
 
 endmodule

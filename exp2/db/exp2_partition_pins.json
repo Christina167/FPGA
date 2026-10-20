@@ -64,6 +64,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "CLOCK_50",
+					"strict" : false
+				},
+				{
 					"name" : "ADC_DA[0]",
 					"strict" : false
 				},
@@ -117,6 +121,18 @@
 				},
 				{
 					"name" : "ADC_DA[9]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[3]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[2]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[1]",
 					"strict" : false
 				}
 			]

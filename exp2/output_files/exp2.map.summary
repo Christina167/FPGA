@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Wed Oct 14 09:13:23 2026
+Analysis & Synthesis Status : Successful - Tue Oct 20 23:14:50 2026
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : exp2
 Top-level Entity Name : exp2
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 1612
+Total registers : 2130
 Total pins : 40
 Total virtual pins : 0
-Total block memory bits : 88,064
+Total block memory bits : 294,912
 Total DSP Blocks : 0
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
