@@ -8,6 +8,6 @@
   </columns>
  </systemtable>
  <library
-   expandedCategories="Project,Library,Library/Processors and Peripherals/Peripherals,Library/Processors and Peripherals,Library/Interface Protocols/PCI Express/QSYS Example Designs,Library/Interface Protocols,Library/Interface Protocols/PCI Express" />
- <window width="1938" height="1038" x="-9" y="-9" />
+   expandedCategories="Library/Memory Interfaces and Controllers/Memory Interfaces with UniPHY,Library/DSP/Video and Image Processing,Library/DSP,Library/University Program/Memory,Library/Basic Functions,Library/Memory Interfaces and Controllers,Project,Library/Memory Interfaces and Controllers/SDRAM,Library/Basic Functions/On Chip Memory,Library,Library/University Program/Clock,Library/University Program" />
+ <window width="1846" height="1038" x="618" y="244" />
 </preferences>

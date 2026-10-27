@@ -70,6 +70,7 @@
 			hps_0_hps_io_hps_io_gpio_inst_GPIO53  : inout std_logic                     := 'X';             -- hps_io_gpio_inst_GPIO53
 			hps_0_hps_io_hps_io_gpio_inst_GPIO54  : inout std_logic                     := 'X';             -- hps_io_gpio_inst_GPIO54
 			hps_0_hps_io_hps_io_gpio_inst_GPIO61  : inout std_logic                     := 'X';             -- hps_io_gpio_inst_GPIO61
+			led_pio9_external_connection_export   : out   std_logic;                                        -- export
 			led_pio_external_connection_export    : out   std_logic_vector(8 downto 0);                     -- export
 			memory_mem_a                          : out   std_logic_vector(14 downto 0);                    -- mem_a
 			memory_mem_ba                         : out   std_logic_vector(2 downto 0);                     -- mem_ba
@@ -88,7 +89,13 @@
 			memory_mem_dm                         : out   std_logic_vector(3 downto 0);                     -- mem_dm
 			memory_oct_rzqin                      : in    std_logic                     := 'X';             -- oct_rzqin
 			reset_reset_n                         : in    std_logic                     := 'X';             -- reset_n
-			led_pio9_external_connection_export   : out   std_logic                                         -- export
+			onchip_memory2_0_s1_address           : in    std_logic_vector(5 downto 0)  := (others => 'X'); -- address
+			onchip_memory2_0_s1_clken             : in    std_logic                     := 'X';             -- clken
+			onchip_memory2_0_s1_chipselect        : in    std_logic                     := 'X';             -- chipselect
+			onchip_memory2_0_s1_write             : in    std_logic                     := 'X';             -- write
+			onchip_memory2_0_s1_readdata          : out   std_logic_vector(31 downto 0);                    -- readdata
+			onchip_memory2_0_s1_writedata         : in    std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+			onchip_memory2_0_s1_byteenable        : in    std_logic_vector(3 downto 0)  := (others => 'X')  -- byteenable
 		);
 	end component soc_system;
 
@@ -164,6 +171,7 @@
 			hps_0_hps_io_hps_io_gpio_inst_GPIO53  => CONNECTED_TO_hps_0_hps_io_hps_io_gpio_inst_GPIO53,  --                               .hps_io_gpio_inst_GPIO53
 			hps_0_hps_io_hps_io_gpio_inst_GPIO54  => CONNECTED_TO_hps_0_hps_io_hps_io_gpio_inst_GPIO54,  --                               .hps_io_gpio_inst_GPIO54
 			hps_0_hps_io_hps_io_gpio_inst_GPIO61  => CONNECTED_TO_hps_0_hps_io_hps_io_gpio_inst_GPIO61,  --                               .hps_io_gpio_inst_GPIO61
+			led_pio9_external_connection_export   => CONNECTED_TO_led_pio9_external_connection_export,   --   led_pio9_external_connection.export
 			led_pio_external_connection_export    => CONNECTED_TO_led_pio_external_connection_export,    --    led_pio_external_connection.export
 			memory_mem_a                          => CONNECTED_TO_memory_mem_a,                          --                         memory.mem_a
 			memory_mem_ba                         => CONNECTED_TO_memory_mem_ba,                         --                               .mem_ba
@@ -182,6 +190,12 @@
 			memory_mem_dm                         => CONNECTED_TO_memory_mem_dm,                         --                               .mem_dm
 			memory_oct_rzqin                      => CONNECTED_TO_memory_oct_rzqin,                      --                               .oct_rzqin
 			reset_reset_n                         => CONNECTED_TO_reset_reset_n,                         --                          reset.reset_n
-			led_pio9_external_connection_export   => CONNECTED_TO_led_pio9_external_connection_export    --   led_pio9_external_connection.export
+			onchip_memory2_0_s1_address           => CONNECTED_TO_onchip_memory2_0_s1_address,           --            onchip_memory2_0_s1.address
+			onchip_memory2_0_s1_clken             => CONNECTED_TO_onchip_memory2_0_s1_clken,             --                               .clken
+			onchip_memory2_0_s1_chipselect        => CONNECTED_TO_onchip_memory2_0_s1_chipselect,        --                               .chipselect
+			onchip_memory2_0_s1_write             => CONNECTED_TO_onchip_memory2_0_s1_write,             --                               .write
+			onchip_memory2_0_s1_readdata          => CONNECTED_TO_onchip_memory2_0_s1_readdata,          --                               .readdata
+			onchip_memory2_0_s1_writedata         => CONNECTED_TO_onchip_memory2_0_s1_writedata,         --                               .writedata
+			onchip_memory2_0_s1_byteenable        => CONNECTED_TO_onchip_memory2_0_s1_byteenable         --                               .byteenable
 		);
 

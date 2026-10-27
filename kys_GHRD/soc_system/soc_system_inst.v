@@ -69,6 +69,7 @@
 		.hps_0_hps_io_hps_io_gpio_inst_GPIO53  (<connected-to-hps_0_hps_io_hps_io_gpio_inst_GPIO53>),  //                               .hps_io_gpio_inst_GPIO53
 		.hps_0_hps_io_hps_io_gpio_inst_GPIO54  (<connected-to-hps_0_hps_io_hps_io_gpio_inst_GPIO54>),  //                               .hps_io_gpio_inst_GPIO54
 		.hps_0_hps_io_hps_io_gpio_inst_GPIO61  (<connected-to-hps_0_hps_io_hps_io_gpio_inst_GPIO61>),  //                               .hps_io_gpio_inst_GPIO61
+		.led_pio9_external_connection_export   (<connected-to-led_pio9_external_connection_export>),   //   led_pio9_external_connection.export
 		.led_pio_external_connection_export    (<connected-to-led_pio_external_connection_export>),    //    led_pio_external_connection.export
 		.memory_mem_a                          (<connected-to-memory_mem_a>),                          //                         memory.mem_a
 		.memory_mem_ba                         (<connected-to-memory_mem_ba>),                         //                               .mem_ba
@@ -87,6 +88,12 @@
 		.memory_mem_dm                         (<connected-to-memory_mem_dm>),                         //                               .mem_dm
 		.memory_oct_rzqin                      (<connected-to-memory_oct_rzqin>),                      //                               .oct_rzqin
 		.reset_reset_n                         (<connected-to-reset_reset_n>),                         //                          reset.reset_n
-		.led_pio9_external_connection_export   (<connected-to-led_pio9_external_connection_export>)    //   led_pio9_external_connection.export
+		.onchip_memory2_0_s1_address           (<connected-to-onchip_memory2_0_s1_address>),           //            onchip_memory2_0_s1.address
+		.onchip_memory2_0_s1_clken             (<connected-to-onchip_memory2_0_s1_clken>),             //                               .clken
+		.onchip_memory2_0_s1_chipselect        (<connected-to-onchip_memory2_0_s1_chipselect>),        //                               .chipselect
+		.onchip_memory2_0_s1_write             (<connected-to-onchip_memory2_0_s1_write>),             //                               .write
+		.onchip_memory2_0_s1_readdata          (<connected-to-onchip_memory2_0_s1_readdata>),          //                               .readdata
+		.onchip_memory2_0_s1_writedata         (<connected-to-onchip_memory2_0_s1_writedata>),         //                               .writedata
+		.onchip_memory2_0_s1_byteenable        (<connected-to-onchip_memory2_0_s1_byteenable>)         //                               .byteenable
 	);
 

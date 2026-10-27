@@ -222,6 +222,10 @@ module kys_GHRD(
   wire        hps_debug_reset;
   wire [27:0] stm_hw_events;
   wire        fpga_clk_50;
+  wire [5:0]  address_write;
+wire        count_write_en;
+wire [31:0] count_write;
+wire [31:0] count_read;
 // connection of internal logics
   assign LEDR[8:1] = fpga_led_internal;
   assign LEDR[9]   = fpga_led9_internal;
@@ -334,7 +338,28 @@ soc_system u0 (
 		  .hps_0_f2h_debug_reset_req_reset_n     (~hps_debug_reset ),     //      hps_0_f2h_debug_reset_req.reset_n
 		  .hps_0_f2h_stm_hw_events_stm_hwevents  (stm_hw_events ),  //        hps_0_f2h_stm_hw_events.stm_hwevents
 		  .hps_0_f2h_warm_reset_req_reset_n      (~hps_warm_reset ),      //       hps_0_f2h_warm_reset_req.reset_n
-  
+        // RAM Port 1 clock/reset are connected internally in Platform Designer.
+        // Do not connect unexported clk1/reset1/reset_req ports in soc_system u0.
+.onchip_memory2_0_s1_address
+    (address_write),
+
+.onchip_memory2_0_s1_clken
+    (1'b1),
+
+.onchip_memory2_0_s1_chipselect
+    (1'b1),
+
+.onchip_memory2_0_s1_write
+    (count_write_en),
+
+.onchip_memory2_0_s1_readdata
+    (count_read),
+
+.onchip_memory2_0_s1_writedata
+    (count_write),
+
+.onchip_memory2_0_s1_byteenable
+    (4'b1111)
     );
 
 	 
@@ -406,6 +431,14 @@ else
 end
 
 assign LEDR[0]=led_level;
+
+HPS_RAM_example HPS_RAM_example_inst (
+    .clk                    (fpga_clk_50),
+    .channel_address_write  (address_write),
+    .channel_count_write_en (count_write_en),
+    .channel_count_write    (count_write),
+    .channel_count_read     (count_read)
+);
 endmodule
 
   

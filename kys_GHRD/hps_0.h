@@ -21,15 +21,48 @@
  */
 
 /*
+ * Macros for device 'onchip_memory2_0', class 'altera_avalon_onchip_memory2'
+ * The macros are prefixed with 'ONCHIP_MEMORY2_0_'.
+ * The prefix is the slave descriptor.
+ */
+#define ONCHIP_MEMORY2_0_COMPONENT_TYPE altera_avalon_onchip_memory2
+#define ONCHIP_MEMORY2_0_COMPONENT_NAME onchip_memory2_0
+#define ONCHIP_MEMORY2_0_BASE 0x0
+#define ONCHIP_MEMORY2_0_SPAN 256
+#define ONCHIP_MEMORY2_0_END 0xff
+#define ONCHIP_MEMORY2_0_ALLOW_IN_SYSTEM_MEMORY_CONTENT_EDITOR 0
+#define ONCHIP_MEMORY2_0_ALLOW_MRAM_SIM_CONTENTS_ONLY_FILE 0
+#define ONCHIP_MEMORY2_0_CONTENTS_INFO ""
+#define ONCHIP_MEMORY2_0_DUAL_PORT 1
+#define ONCHIP_MEMORY2_0_GUI_RAM_BLOCK_TYPE AUTO
+#define ONCHIP_MEMORY2_0_INIT_CONTENTS_FILE soc_system_onchip_memory2_0
+#define ONCHIP_MEMORY2_0_INIT_MEM_CONTENT 1
+#define ONCHIP_MEMORY2_0_INSTANCE_ID NONE
+#define ONCHIP_MEMORY2_0_NON_DEFAULT_INIT_FILE_ENABLED 0
+#define ONCHIP_MEMORY2_0_RAM_BLOCK_TYPE AUTO
+#define ONCHIP_MEMORY2_0_READ_DURING_WRITE_MODE DONT_CARE
+#define ONCHIP_MEMORY2_0_SINGLE_CLOCK_OP 0
+#define ONCHIP_MEMORY2_0_SIZE_MULTIPLE 1
+#define ONCHIP_MEMORY2_0_SIZE_VALUE 256
+#define ONCHIP_MEMORY2_0_WRITABLE 1
+#define ONCHIP_MEMORY2_0_MEMORY_INFO_DAT_SYM_INSTALL_DIR SIM_DIR
+#define ONCHIP_MEMORY2_0_MEMORY_INFO_GENERATE_DAT_SYM 1
+#define ONCHIP_MEMORY2_0_MEMORY_INFO_GENERATE_HEX 1
+#define ONCHIP_MEMORY2_0_MEMORY_INFO_HAS_BYTE_LANE 0
+#define ONCHIP_MEMORY2_0_MEMORY_INFO_HEX_INSTALL_DIR QPF_DIR
+#define ONCHIP_MEMORY2_0_MEMORY_INFO_MEM_INIT_DATA_WIDTH 32
+#define ONCHIP_MEMORY2_0_MEMORY_INFO_MEM_INIT_FILENAME soc_system_onchip_memory2_0
+
+/*
  * Macros for device 'ILC', class 'interrupt_latency_counter'
  * The macros are prefixed with 'ILC_'.
  * The prefix is the slave descriptor.
  */
 #define ILC_COMPONENT_TYPE interrupt_latency_counter
 #define ILC_COMPONENT_NAME ILC
-#define ILC_BASE 0x0
+#define ILC_BASE 0x100
 #define ILC_SPAN 256
-#define ILC_END 0xff
+#define ILC_END 0x1ff
 
 /*
  * Macros for device 'led_pio9', class 'altera_avalon_pio'
@@ -38,9 +71,9 @@
  */
 #define LED_PIO9_COMPONENT_TYPE altera_avalon_pio
 #define LED_PIO9_COMPONENT_NAME led_pio9
-#define LED_PIO9_BASE 0x100
+#define LED_PIO9_BASE 0x200
 #define LED_PIO9_SPAN 16
-#define LED_PIO9_END 0x10f
+#define LED_PIO9_END 0x20f
 #define LED_PIO9_BIT_CLEARING_EDGE_REGISTER 0
 #define LED_PIO9_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LED_PIO9_CAPTURE 0
@@ -62,9 +95,9 @@
  */
 #define LED_PIO_COMPONENT_TYPE altera_avalon_pio
 #define LED_PIO_COMPONENT_NAME led_pio
-#define LED_PIO_BASE 0x110
+#define LED_PIO_BASE 0x210
 #define LED_PIO_SPAN 16
-#define LED_PIO_END 0x11f
+#define LED_PIO_END 0x21f
 #define LED_PIO_BIT_CLEARING_EDGE_REGISTER 0
 #define LED_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define LED_PIO_CAPTURE 0
@@ -86,9 +119,9 @@
  */
 #define DIPSW_PIO_COMPONENT_TYPE altera_avalon_pio
 #define DIPSW_PIO_COMPONENT_NAME dipsw_pio
-#define DIPSW_PIO_BASE 0x120
+#define DIPSW_PIO_BASE 0x220
 #define DIPSW_PIO_SPAN 16
-#define DIPSW_PIO_END 0x12f
+#define DIPSW_PIO_END 0x22f
 #define DIPSW_PIO_IRQ 0
 #define DIPSW_PIO_BIT_CLEARING_EDGE_REGISTER 1
 #define DIPSW_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
@@ -111,9 +144,9 @@
  */
 #define BUTTON_PIO_COMPONENT_TYPE altera_avalon_pio
 #define BUTTON_PIO_COMPONENT_NAME button_pio
-#define BUTTON_PIO_BASE 0x130
+#define BUTTON_PIO_BASE 0x230
 #define BUTTON_PIO_SPAN 16
-#define BUTTON_PIO_END 0x13f
+#define BUTTON_PIO_END 0x23f
 #define BUTTON_PIO_IRQ 1
 #define BUTTON_PIO_BIT_CLEARING_EDGE_REGISTER 1
 #define BUTTON_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
