@@ -35,8 +35,6 @@ reg [13:0] increment = 14'h131;
 //0=A1，1=A2，2=A3
 reg [1:0] wave_sel = 2'd0;
 
-
-
 assign PLL_OUT_DAC0 = CLOCK_100;
 assign PLL_OUT_DAC1 = CLOCK_100;
 assign DAC_WRTA     = CLOCK_100;

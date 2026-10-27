@@ -1,6 +1,4 @@
-// Minimal-change version of the experiment-2 top-level module.
-// Keep the top-level name "exp2" so Quartus .qsf and pin assignments remain.
-// The original PLL/DAC/ADC/PulseHeight instances are left unchanged.
+
 module exp2(
     PLL_OUT_DAC0,
     PLL_OUT_DAC1,
@@ -33,7 +31,7 @@ module exp2(
     wire [13:0] pulse_height;
     wire rst_n = KEY[0];
 
-    // ========= Original experiment 2: no functional modifications =========
+
     pll pll0(
         .refclk   (CLOCK_50),
         .rst      (~rst_n),
@@ -69,10 +67,7 @@ module exp2(
         .CLOCK_65       (CLOCK_65)
     );
 
-    // ========= New in experiment 3: key edge detection =========
-    // KEY is active low. A short command pulse is required; holding a
-    // raw key level would otherwise repeatedly interrupt RAM RMW states.
-    // Only simple 2-flop synchronization + edge detection: no debounce IP.
+
     reg [3:1] key_meta, key_sync, key_last;
     always @(posedge CLOCK_65 or negedge rst_n) begin
         if (!rst_n) begin
@@ -91,7 +86,6 @@ module exp2(
     wire cmd_pause = key_last[2] && !key_sync[2];
     wire cmd_clear = key_last[3] && !key_sync[3];
 
-    // ========= New in experiment 3: RAM port A spectrum accumulation =========
     wire [9:0] channel_address_write /* synthesis keep */;
     wire       channel_count_write_en /* synthesis keep */;
     wire [31:0] channel_count_write /* synthesis keep */;
@@ -111,7 +105,7 @@ module exp2(
         .CLOCK_65              (CLOCK_65)
     );
 
-    // ========= New in experiment 3: RAM port B scan =========
+
     wire [9:0] channel_address_b /* synthesis keep */;
     wire [31:0] channel_count_b /* synthesis keep */;
     wire [31:0] spectrum_count /* synthesis keep */;
@@ -124,14 +118,17 @@ module exp2(
         .count          (spectrum_count)
     );
 
-    // ========= New in experiment 3: Quartus-generated dual-port RAM =========
+
+	 
+
     RAM RAM0(
         .clock_a   (CLOCK_65),
         .address_a (channel_address_write),
         .data_a    (channel_count_write),
         .wren_a    (channel_count_write_en),
         .q_a       (channel_count_read),
-
+	 
+	 
         .clock_b   (CLOCK_50),
         .address_b (channel_address_b),
         .data_b    (32'd0),
