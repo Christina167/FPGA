@@ -87,13 +87,15 @@
 		.memory_mem_odt                        (<connected-to-memory_mem_odt>),                        //                               .mem_odt
 		.memory_mem_dm                         (<connected-to-memory_mem_dm>),                         //                               .mem_dm
 		.memory_oct_rzqin                      (<connected-to-memory_oct_rzqin>),                      //                               .oct_rzqin
-		.reset_reset_n                         (<connected-to-reset_reset_n>),                         //                          reset.reset_n
 		.onchip_memory2_0_s1_address           (<connected-to-onchip_memory2_0_s1_address>),           //            onchip_memory2_0_s1.address
 		.onchip_memory2_0_s1_clken             (<connected-to-onchip_memory2_0_s1_clken>),             //                               .clken
 		.onchip_memory2_0_s1_chipselect        (<connected-to-onchip_memory2_0_s1_chipselect>),        //                               .chipselect
 		.onchip_memory2_0_s1_write             (<connected-to-onchip_memory2_0_s1_write>),             //                               .write
 		.onchip_memory2_0_s1_readdata          (<connected-to-onchip_memory2_0_s1_readdata>),          //                               .readdata
 		.onchip_memory2_0_s1_writedata         (<connected-to-onchip_memory2_0_s1_writedata>),         //                               .writedata
-		.onchip_memory2_0_s1_byteenable        (<connected-to-onchip_memory2_0_s1_byteenable>)         //                               .byteenable
+		.onchip_memory2_0_s1_byteenable        (<connected-to-onchip_memory2_0_s1_byteenable>),        //                               .byteenable
+		.reset_reset_n                         (<connected-to-reset_reset_n>),                         //                          reset.reset_n
+		.spectrum_clock_clk                    (<connected-to-spectrum_clock_clk>),                    //                 spectrum_clock.clk
+		.spectrum_reset_reset_n                (<connected-to-spectrum_reset_reset_n>)                 //                 spectrum_reset.reset_n
 	);
 

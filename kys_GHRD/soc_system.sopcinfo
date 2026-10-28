@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="soc_system" kind="soc_system" version="1.0" fabric="QSYS">
  <!-- Format version 20.1 711 (Future versions may contain additional information.) -->
- <!-- 2026.10.28.04:25:05 -->
+ <!-- 2026.10.28.09:04:36 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1793132705</value>
+  <value>1793149476</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -77,6 +77,36 @@
   <valid>true</valid>
   <sysinfo_type>RESET_DOMAIN</sysinfo_type>
   <sysinfo_arg>clk</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_SPECTRUM_CLOCK_CLOCK_RATE">
+  <type>java.lang.Long</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>CLOCK_RATE</sysinfo_type>
+  <sysinfo_arg>spectrum_clock</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_SPECTRUM_CLOCK_CLOCK_DOMAIN">
+  <type>java.lang.Integer</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>CLOCK_DOMAIN</sysinfo_type>
+  <sysinfo_arg>spectrum_clock</sysinfo_arg>
+ </parameter>
+ <parameter name="AUTO_SPECTRUM_CLOCK_RESET_DOMAIN">
+  <type>java.lang.Integer</type>
+  <value>-1</value>
+  <derived>false</derived>
+  <enabled>true</enabled>
+  <visible>false</visible>
+  <valid>true</valid>
+  <sysinfo_type>RESET_DOMAIN</sysinfo_type>
+  <sysinfo_arg>spectrum_clock</sysinfo_arg>
  </parameter>
  <parameter name="deviceFamily">
   <type>java.lang.String</type>
@@ -1895,12 +1925,6 @@ parameters are a RESULT of the module parameters. -->
    <clockDomainMember>
     <isBridge>false</isBridge>
     <moduleName>onchip_memory2_0</moduleName>
-    <slaveName>clk1</slaveName>
-    <name>onchip_memory2_0.clk1</name>
-   </clockDomainMember>
-   <clockDomainMember>
-    <isBridge>false</isBridge>
-    <moduleName>onchip_memory2_0</moduleName>
     <slaveName>clk2</slaveName>
     <name>onchip_memory2_0.clk2</name>
    </clockDomainMember>
@@ -1927,6 +1951,310 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>hps_0_bridges</moduleName>
     <slaveName>h2f_lw_axi_clock</slaveName>
     <name>hps_0_bridges.h2f_lw_axi_clock</name>
+   </clockDomainMember>
+  </interface>
+  <interface name="clk_reset" kind="reset_source" version="20.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="associatedClock">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="associatedDirectReset">
+    <type>java.lang.String</type>
+    <value>clk_in_reset</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="associatedResetSinks">
+    <type>[Ljava.lang.String;</type>
+    <value>clk_in_reset</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="synchronousEdges">
+    <type>com.altera.sopcmodel.reset.Reset$Edges</type>
+    <value>NONE</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>reset</type>
+   <isStart>true</isStart>
+   <port>
+    <name>reset_n_out</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>reset_n</role>
+   </port>
+  </interface>
+ </module>
+ <module name="clk_65_0" kind="clock_source" version="20.1" path="clk_65_0">
+  <!-- Describes a single module. Module parameters are
+the requested settings for a module instance. -->
+  <parameter name="clockFrequency">
+   <type>long</type>
+   <value>65000000</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="clockFrequencyKnown">
+   <type>boolean</type>
+   <value>true</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="inputClockFrequency">
+   <type>long</type>
+   <value>0</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>false</visible>
+   <valid>true</valid>
+   <sysinfo_type>CLOCK_RATE</sysinfo_type>
+   <sysinfo_arg>clk_in</sysinfo_arg>
+  </parameter>
+  <parameter name="resetSynchronousEdges">
+   <type>com.altera.sopcmodel.reset.Reset$Edges</type>
+   <value>NONE</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <interface name="clk_in" kind="clock_sink" version="20.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <assignment>
+    <name>qsys.ui.export_name</name>
+    <value>clk</value>
+   </assignment>
+   <parameter name="externallyDriven">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="ptfSchematicName">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockRateKnown">
+    <type>java.lang.Boolean</type>
+    <value>true</value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockRate">
+    <type>java.lang.Long</type>
+    <value>65000000</value>
+    <derived>true</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>clock</type>
+   <isStart>false</isStart>
+   <port>
+    <name>in_clk</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>clk</role>
+   </port>
+  </interface>
+  <interface name="clk_in_reset" kind="reset_sink" version="20.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <assignment>
+    <name>qsys.ui.export_name</name>
+    <value>reset</value>
+   </assignment>
+   <parameter name="associatedClock">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="synchronousEdges">
+    <type>com.altera.sopcmodel.reset.Reset$Edges</type>
+    <value>NONE</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>reset</type>
+   <isStart>false</isStart>
+   <port>
+    <name>reset_n</name>
+    <direction>Input</direction>
+    <width>1</width>
+    <role>reset_n</role>
+   </port>
+  </interface>
+  <interface name="clk" kind="clock_source" version="20.1">
+   <!-- The connection points exposed by a module instance for the
+particular module parameters. Connection points and their
+parameters are a RESULT of the module parameters. -->
+   <parameter name="associatedDirectClock">
+    <type>java.lang.String</type>
+    <value>clk_in</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockRate">
+    <type>long</type>
+    <value>65000000</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="clockRateKnown">
+    <type>boolean</type>
+    <value>true</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="externallyDriven">
+    <type>boolean</type>
+    <value>true</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="ptfSchematicName">
+    <type>java.lang.String</type>
+    <value></value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>false</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="deviceFamily">
+    <type>java.lang.String</type>
+    <value>UNKNOWN</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <parameter name="generateLegacySim">
+    <type>boolean</type>
+    <value>false</value>
+    <derived>false</derived>
+    <enabled>true</enabled>
+    <visible>true</visible>
+    <valid>true</valid>
+   </parameter>
+   <type>clock</type>
+   <isStart>true</isStart>
+   <port>
+    <name>clk_out</name>
+    <direction>Output</direction>
+    <width>1</width>
+    <role>clk</role>
+   </port>
+   <clockDomainMember>
+    <isBridge>false</isBridge>
+    <moduleName>onchip_memory2_0</moduleName>
+    <slaveName>clk1</slaveName>
+    <name>onchip_memory2_0.clk1</name>
    </clockDomainMember>
   </interface>
   <interface name="clk_reset" kind="reset_source" version="20.1">
@@ -3960,7 +4288,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ILC</moduleName>
     <slaveName>avalon_slave</slaveName>
     <name>ILC.avalon_slave</name>
-    <baseAddress>256</baseAddress>
+    <baseAddress>4096</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -3968,7 +4296,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio.s1</name>
-    <baseAddress>528</baseAddress>
+    <baseAddress>4368</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -3976,7 +4304,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>dipsw_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>dipsw_pio.s1</name>
-    <baseAddress>544</baseAddress>
+    <baseAddress>4384</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -3984,7 +4312,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>button_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>button_pio.s1</name>
-    <baseAddress>560</baseAddress>
+    <baseAddress>4400</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -3992,7 +4320,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio9</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio9.s1</name>
-    <baseAddress>512</baseAddress>
+    <baseAddress>4352</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -4001,7 +4329,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>onchip_memory2_0.s2</name>
     <baseAddress>0</baseAddress>
-    <span>256</span>
+    <span>4096</span>
    </memoryBlock>
   </interface>
   <interface name="master_reset" kind="reset_source" version="20.1">
@@ -21165,7 +21493,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ILC</moduleName>
     <slaveName>avalon_slave</slaveName>
     <name>ILC.avalon_slave</name>
-    <baseAddress>256</baseAddress>
+    <baseAddress>4096</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -21173,7 +21501,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>button_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>button_pio.s1</name>
-    <baseAddress>560</baseAddress>
+    <baseAddress>4400</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -21181,7 +21509,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>dipsw_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>dipsw_pio.s1</name>
-    <baseAddress>544</baseAddress>
+    <baseAddress>4384</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -21189,7 +21517,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio.s1</name>
-    <baseAddress>528</baseAddress>
+    <baseAddress>4368</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -21197,7 +21525,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio9</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio9.s1</name>
-    <baseAddress>512</baseAddress>
+    <baseAddress>4352</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -21206,7 +21534,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>onchip_memory2_0.s2</name>
     <baseAddress>0</baseAddress>
-    <span>256</span>
+    <span>4096</span>
    </memoryBlock>
   </interface>
   <interface name="f2h_irq0" kind="interrupt_receiver" version="20.1">
@@ -48170,7 +48498,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ILC</moduleName>
     <slaveName>avalon_slave</slaveName>
     <name>ILC.avalon_slave</name>
-    <baseAddress>256</baseAddress>
+    <baseAddress>4096</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -48178,7 +48506,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>button_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>button_pio.s1</name>
-    <baseAddress>560</baseAddress>
+    <baseAddress>4400</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -48186,7 +48514,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>dipsw_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>dipsw_pio.s1</name>
-    <baseAddress>544</baseAddress>
+    <baseAddress>4384</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -48194,7 +48522,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio.s1</name>
-    <baseAddress>528</baseAddress>
+    <baseAddress>4368</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -48202,7 +48530,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio9</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio9.s1</name>
-    <baseAddress>512</baseAddress>
+    <baseAddress>4352</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -48211,7 +48539,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>onchip_memory2_0.s2</name>
     <baseAddress>0</baseAddress>
-    <span>256</span>
+    <span>4096</span>
    </memoryBlock>
   </interface>
   <interface name="f2h_axi_clock" kind="clock_sink" version="20.1">
@@ -50203,7 +50531,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ILC</moduleName>
     <slaveName>avalon_slave</slaveName>
     <name>ILC.avalon_slave</name>
-    <baseAddress>4280287488</baseAddress>
+    <baseAddress>4280291328</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -50211,7 +50539,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>button_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>button_pio.s1</name>
-    <baseAddress>4280287792</baseAddress>
+    <baseAddress>4280291632</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -50219,7 +50547,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>dipsw_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>dipsw_pio.s1</name>
-    <baseAddress>4280287776</baseAddress>
+    <baseAddress>4280291616</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -50227,7 +50555,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio.s1</name>
-    <baseAddress>4280287760</baseAddress>
+    <baseAddress>4280291600</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -50235,7 +50563,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio9</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio9.s1</name>
-    <baseAddress>4280287744</baseAddress>
+    <baseAddress>4280291584</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -50244,7 +50572,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>onchip_memory2_0.s2</name>
     <baseAddress>4280287232</baseAddress>
-    <span>256</span>
+    <span>4096</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
@@ -51090,7 +51418,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ILC</moduleName>
     <slaveName>avalon_slave</slaveName>
     <name>ILC.avalon_slave</name>
-    <baseAddress>4280287488</baseAddress>
+    <baseAddress>4280291328</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -51098,7 +51426,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>button_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>button_pio.s1</name>
-    <baseAddress>4280287792</baseAddress>
+    <baseAddress>4280291632</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -51106,7 +51434,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>dipsw_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>dipsw_pio.s1</name>
-    <baseAddress>4280287776</baseAddress>
+    <baseAddress>4280291616</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -51114,7 +51442,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio.s1</name>
-    <baseAddress>4280287760</baseAddress>
+    <baseAddress>4280291600</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -51122,7 +51450,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio9</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio9.s1</name>
-    <baseAddress>4280287744</baseAddress>
+    <baseAddress>4280291584</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -51131,7 +51459,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>onchip_memory2_0.s2</name>
     <baseAddress>4280287232</baseAddress>
-    <span>256</span>
+    <span>4096</span>
    </memoryBlock>
    <memoryBlock>
     <isBridge>false</isBridge>
@@ -82905,7 +83233,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>ILC</moduleName>
     <slaveName>avalon_slave</slaveName>
     <name>ILC.avalon_slave</name>
-    <baseAddress>256</baseAddress>
+    <baseAddress>4096</baseAddress>
     <span>256</span>
    </memoryBlock>
    <memoryBlock>
@@ -82913,7 +83241,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>button_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>button_pio.s1</name>
-    <baseAddress>560</baseAddress>
+    <baseAddress>4400</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -82921,7 +83249,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>dipsw_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>dipsw_pio.s1</name>
-    <baseAddress>544</baseAddress>
+    <baseAddress>4384</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -82929,7 +83257,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio.s1</name>
-    <baseAddress>528</baseAddress>
+    <baseAddress>4368</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -82937,7 +83265,7 @@ parameters are a RESULT of the module parameters. -->
     <moduleName>led_pio9</moduleName>
     <slaveName>s1</slaveName>
     <name>led_pio9.s1</name>
-    <baseAddress>512</baseAddress>
+    <baseAddress>4352</baseAddress>
     <span>16</span>
    </memoryBlock>
    <memoryBlock>
@@ -82946,7 +83274,7 @@ parameters are a RESULT of the module parameters. -->
     <slaveName>s2</slaveName>
     <name>onchip_memory2_0.s2</name>
     <baseAddress>0</baseAddress>
-    <span>256</span>
+    <span>4096</span>
    </memoryBlock>
   </interface>
  </module>
@@ -83011,7 +83339,7 @@ the requested settings for a module instance. -->
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.SIZE_VALUE</name>
-   <value>256</value>
+   <value>4096</value>
   </assignment>
   <assignment>
    <name>embeddedsw.CMacro.WRITABLE</name>
@@ -83143,7 +83471,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="memorySize">
    <type>long</type>
-   <value>256</value>
+   <value>4096</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -83282,7 +83610,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_set_addr_width">
    <type>int</type>
-   <value>6</value>
+   <value>10</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -83290,7 +83618,7 @@ the requested settings for a module instance. -->
   </parameter>
   <parameter name="derived_set_addr_width2">
    <type>int</type>
-   <value>6</value>
+   <value>10</value>
    <derived>true</derived>
    <enabled>true</enabled>
    <visible>false</visible>
@@ -83427,7 +83755,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>256</value>
+    <value>4096</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -83515,7 +83843,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="explicitAddressSpan">
     <type>java.math.BigInteger</type>
-    <value>256</value>
+    <value>4096</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -83726,7 +84054,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address</name>
     <direction>Input</direction>
-    <width>6</width>
+    <width>10</width>
     <role>address</role>
    </port>
    <port>
@@ -83855,7 +84183,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="addressSpan">
     <type>java.math.BigInteger</type>
-    <value>256</value>
+    <value>4096</value>
     <derived>true</derived>
     <enabled>true</enabled>
     <visible>false</visible>
@@ -83943,7 +84271,7 @@ parameters are a RESULT of the module parameters. -->
    </parameter>
    <parameter name="explicitAddressSpan">
     <type>java.math.BigInteger</type>
-    <value>256</value>
+    <value>4096</value>
     <derived>false</derived>
     <enabled>true</enabled>
     <visible>true</visible>
@@ -84154,7 +84482,7 @@ parameters are a RESULT of the module parameters. -->
    <port>
     <name>address2</name>
     <direction>Input</direction>
-    <width>6</width>
+    <width>10</width>
     <role>address</role>
    </port>
    <port>
@@ -94535,7 +94863,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0100</value>
+   <value>0x1000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -94586,7 +94914,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0230</value>
+   <value>0x1130</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -94637,7 +94965,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0220</value>
+   <value>0x1120</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -94688,7 +95016,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0210</value>
+   <value>0x1110</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -94739,7 +95067,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0200</value>
+   <value>0x1100</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -94892,7 +95220,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0100</value>
+   <value>0x1000</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -95045,7 +95373,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0210</value>
+   <value>0x1110</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -95096,7 +95424,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0220</value>
+   <value>0x1120</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -95147,7 +95475,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0230</value>
+   <value>0x1130</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -95198,7 +95526,7 @@ parameters are a RESULT of the module parameters. -->
   </parameter>
   <parameter name="baseAddress">
    <type>java.math.BigInteger</type>
-   <value>0x0200</value>
+   <value>0x1100</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -95555,10 +95883,10 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>clk</endConnectionPoint>
  </connection>
  <connection
-   name="clk_0.clk/onchip_memory2_0.clk1"
+   name="clk_65_0.clk/onchip_memory2_0.clk1"
    kind="clock"
    version="20.1"
-   start="clk_0.clk"
+   start="clk_65_0.clk"
    end="onchip_memory2_0.clk1">
   <parameter name="deviceFamily">
    <type>java.lang.String</type>
@@ -95576,7 +95904,7 @@ parameters are a RESULT of the module parameters. -->
    <visible>true</visible>
    <valid>true</valid>
   </parameter>
-  <startModule>clk_0</startModule>
+  <startModule>clk_65_0</startModule>
   <startConnectionPoint>clk</startConnectionPoint>
   <endModule>onchip_memory2_0</endModule>
   <endConnectionPoint>clk1</endConnectionPoint>
@@ -96197,6 +96525,33 @@ parameters are a RESULT of the module parameters. -->
   <endConnectionPoint>reset1</endConnectionPoint>
  </connection>
  <connection
+   name="clk_65_0.clk_reset/onchip_memory2_0.reset1"
+   kind="reset"
+   version="20.1"
+   start="clk_65_0.clk_reset"
+   end="onchip_memory2_0.reset1">
+  <parameter name="deviceFamily">
+   <type>java.lang.String</type>
+   <value>UNKNOWN</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <parameter name="generateLegacySim">
+   <type>boolean</type>
+   <value>false</value>
+   <derived>false</derived>
+   <enabled>true</enabled>
+   <visible>true</visible>
+   <valid>true</valid>
+  </parameter>
+  <startModule>clk_65_0</startModule>
+  <startConnectionPoint>clk_reset</startConnectionPoint>
+  <endModule>onchip_memory2_0</endModule>
+  <endConnectionPoint>reset1</endConnectionPoint>
+ </connection>
+ <connection
    name="clk_0.clk_reset/onchip_memory2_0.reset2"
    kind="reset"
    version="20.1"
@@ -96315,7 +96670,7 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
+  <instanceCount>2</instanceCount>
   <name>clock_source</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IModule</subtype>
@@ -96323,7 +96678,7 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
+  <instanceCount>2</instanceCount>
   <name>clock_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -96331,7 +96686,7 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
+  <instanceCount>2</instanceCount>
   <name>reset_sink</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -96339,7 +96694,7 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
+  <instanceCount>2</instanceCount>
   <name>clock_source</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -96347,7 +96702,7 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <plugin>
-  <instanceCount>1</instanceCount>
+  <instanceCount>2</instanceCount>
   <name>reset_source</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IMutableConnectionPoint</subtype>
@@ -96691,7 +97046,7 @@ parameters are a RESULT of the module parameters. -->
   <version>20.1</version>
  </plugin>
  <plugin>
-  <instanceCount>54</instanceCount>
+  <instanceCount>55</instanceCount>
   <name>reset</name>
   <type>com.altera.entityinterfaces.IElementClass</type>
   <subtype>com.altera.entityinterfaces.IConnection</subtype>

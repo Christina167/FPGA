@@ -92,14 +92,16 @@ module soc_system (
 		output wire        memory_mem_odt,                        //                               .mem_odt
 		output wire [3:0]  memory_mem_dm,                         //                               .mem_dm
 		input  wire        memory_oct_rzqin,                      //                               .oct_rzqin
-		input  wire [5:0]  onchip_memory2_0_s1_address,           //            onchip_memory2_0_s1.address
+		input  wire [9:0]  onchip_memory2_0_s1_address,           //            onchip_memory2_0_s1.address
 		input  wire        onchip_memory2_0_s1_clken,             //                               .clken
 		input  wire        onchip_memory2_0_s1_chipselect,        //                               .chipselect
 		input  wire        onchip_memory2_0_s1_write,             //                               .write
 		output wire [31:0] onchip_memory2_0_s1_readdata,          //                               .readdata
 		input  wire [31:0] onchip_memory2_0_s1_writedata,         //                               .writedata
 		input  wire [3:0]  onchip_memory2_0_s1_byteenable,        //                               .byteenable
-		input  wire        reset_reset_n                          //                          reset.reset_n
+		input  wire        reset_reset_n,                         //                          reset.reset_n
+		input  wire        spectrum_clock_clk,                    //                 spectrum_clock.clk
+		input  wire        spectrum_reset_reset_n                 //                 spectrum_reset.reset_n
 	);
 
 	wire    [1:0] hps_0_h2f_lw_axi_master_awburst;                           // hps_0:h2f_lw_AWBURST -> mm_interconnect_0:hps_0_h2f_lw_axi_master_awburst
@@ -200,7 +202,7 @@ module soc_system (
 	wire   [31:0] mm_interconnect_1_led_pio9_s1_writedata;                   // mm_interconnect_1:led_pio9_s1_writedata -> led_pio9:writedata
 	wire          mm_interconnect_1_onchip_memory2_0_s2_chipselect;          // mm_interconnect_1:onchip_memory2_0_s2_chipselect -> onchip_memory2_0:chipselect2
 	wire   [31:0] mm_interconnect_1_onchip_memory2_0_s2_readdata;            // onchip_memory2_0:readdata2 -> mm_interconnect_1:onchip_memory2_0_s2_readdata
-	wire    [5:0] mm_interconnect_1_onchip_memory2_0_s2_address;             // mm_interconnect_1:onchip_memory2_0_s2_address -> onchip_memory2_0:address2
+	wire    [9:0] mm_interconnect_1_onchip_memory2_0_s2_address;             // mm_interconnect_1:onchip_memory2_0_s2_address -> onchip_memory2_0:address2
 	wire    [3:0] mm_interconnect_1_onchip_memory2_0_s2_byteenable;          // mm_interconnect_1:onchip_memory2_0_s2_byteenable -> onchip_memory2_0:byteenable2
 	wire          mm_interconnect_1_onchip_memory2_0_s2_write;               // mm_interconnect_1:onchip_memory2_0_s2_write -> onchip_memory2_0:write2
 	wire   [31:0] mm_interconnect_1_onchip_memory2_0_s2_writedata;           // mm_interconnect_1:onchip_memory2_0_s2_writedata -> onchip_memory2_0:writedata2
@@ -274,9 +276,11 @@ module soc_system (
 	wire          irq_mapper_receiver1_irq;                                  // button_pio:irq -> [irq_mapper:receiver1_irq, irq_mapper_001:receiver1_irq]
 	wire          irq_mapper_receiver2_irq;                                  // dipsw_pio:irq -> [irq_mapper:receiver2_irq, irq_mapper_001:receiver2_irq]
 	wire          irq_mapper_receiver0_irq;                                  // jtag_uart:av_irq -> [irq_mapper:receiver0_irq, irq_mapper_001:receiver0_irq]
-	wire          rst_controller_reset_out_reset;                            // rst_controller:reset_out -> [ILC:reset_n, button_pio:reset_n, dipsw_pio:reset_n, irq_mapper:reset, jtag_uart:rst_n, led_pio9:reset_n, led_pio:reset_n, mm_bridge_0:reset, mm_interconnect_0:mm_bridge_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:fpga_only_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_1:mm_bridge_0_reset_reset_bridge_in_reset_reset, mm_interconnect_2:hps_only_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_2:hps_only_master_master_translator_reset_reset_bridge_in_reset_reset, mm_interconnect_3:f2sdram_only_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_3:f2sdram_only_master_master_translator_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, onchip_memory2_0:reset2, rst_translator:in_reset]
-	wire          rst_controller_reset_out_reset_req;                        // rst_controller:reset_req -> [onchip_memory2_0:reset_req, onchip_memory2_0:reset_req2, rst_translator:reset_req_in]
-	wire          rst_controller_001_reset_out_reset;                        // rst_controller_001:reset_out -> [mm_interconnect_0:hps_0_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_2:hps_0_f2h_axi_slave_agent_reset_sink_reset_bridge_in_reset_reset, mm_interconnect_3:hps_0_f2h_sdram0_data_translator_reset_reset_bridge_in_reset_reset]
+	wire          rst_controller_reset_out_reset;                            // rst_controller:reset_out -> [ILC:reset_n, button_pio:reset_n, dipsw_pio:reset_n, irq_mapper:reset, jtag_uart:rst_n, led_pio9:reset_n, led_pio:reset_n, mm_bridge_0:reset, mm_interconnect_0:mm_bridge_0_reset_reset_bridge_in_reset_reset, mm_interconnect_1:fpga_only_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_1:mm_bridge_0_reset_reset_bridge_in_reset_reset, mm_interconnect_2:hps_only_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_2:hps_only_master_master_translator_reset_reset_bridge_in_reset_reset, mm_interconnect_3:f2sdram_only_master_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_3:f2sdram_only_master_master_translator_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset2, rst_translator:in_reset]
+	wire          rst_controller_reset_out_reset_req;                        // rst_controller:reset_req -> [onchip_memory2_0:reset_req2, rst_translator:reset_req_in]
+	wire          rst_controller_001_reset_out_reset;                        // rst_controller_001:reset_out -> onchip_memory2_0:reset
+	wire          rst_controller_001_reset_out_reset_req;                    // rst_controller_001:reset_req -> onchip_memory2_0:reset_req
+	wire          rst_controller_002_reset_out_reset;                        // rst_controller_002:reset_out -> [mm_interconnect_0:hps_0_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_2:hps_0_f2h_axi_slave_agent_reset_sink_reset_bridge_in_reset_reset, mm_interconnect_3:hps_0_f2h_sdram0_data_translator_reset_reset_bridge_in_reset_reset]
 
 	interrupt_latency_counter #(
 		.INTR_TYPE    (0),
@@ -655,7 +659,7 @@ module soc_system (
 	);
 
 	soc_system_onchip_memory2_0 onchip_memory2_0 (
-		.clk         (clk_clk),                                          //   clk1.clk
+		.clk         (spectrum_clock_clk),                               //   clk1.clk
 		.address     (onchip_memory2_0_s1_address),                      //     s1.address
 		.clken       (onchip_memory2_0_s1_clken),                        //       .clken
 		.chipselect  (onchip_memory2_0_s1_chipselect),                   //       .chipselect
@@ -663,8 +667,8 @@ module soc_system (
 		.readdata    (onchip_memory2_0_s1_readdata),                     //       .readdata
 		.writedata   (onchip_memory2_0_s1_writedata),                    //       .writedata
 		.byteenable  (onchip_memory2_0_s1_byteenable),                   //       .byteenable
-		.reset       (rst_controller_reset_out_reset),                   // reset1.reset
-		.reset_req   (rst_controller_reset_out_reset_req),               //       .reset_req
+		.reset       (rst_controller_001_reset_out_reset),               // reset1.reset
+		.reset_req   (rst_controller_001_reset_out_reset_req),           //       .reset_req
 		.address2    (mm_interconnect_1_onchip_memory2_0_s2_address),    //     s2.address
 		.chipselect2 (mm_interconnect_1_onchip_memory2_0_s2_chipselect), //       .chipselect
 		.clken2      (mm_interconnect_1_onchip_memory2_0_s2_clken),      //       .clken
@@ -716,7 +720,7 @@ module soc_system (
 		.hps_0_h2f_lw_axi_master_rvalid                                      (hps_0_h2f_lw_axi_master_rvalid),                 //                                                              .rvalid
 		.hps_0_h2f_lw_axi_master_rready                                      (hps_0_h2f_lw_axi_master_rready),                 //                                                              .rready
 		.clk_0_clk_clk                                                       (clk_clk),                                        //                                                     clk_0_clk.clk
-		.hps_0_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset (rst_controller_001_reset_out_reset),             // hps_0_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
+		.hps_0_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset_reset (rst_controller_002_reset_out_reset),             // hps_0_h2f_lw_axi_master_agent_clk_reset_reset_bridge_in_reset.reset
 		.mm_bridge_0_reset_reset_bridge_in_reset_reset                       (rst_controller_reset_out_reset),                 //                       mm_bridge_0_reset_reset_bridge_in_reset.reset
 		.mm_bridge_0_s0_address                                              (mm_interconnect_0_mm_bridge_0_s0_address),       //                                                mm_bridge_0_s0.address
 		.mm_bridge_0_s0_write                                                (mm_interconnect_0_mm_bridge_0_s0_write),         //                                                              .write
@@ -833,7 +837,7 @@ module soc_system (
 		.hps_0_f2h_axi_slave_rvalid                                          (mm_interconnect_2_hps_0_f2h_axi_slave_rvalid),  //                                                              .rvalid
 		.hps_0_f2h_axi_slave_rready                                          (mm_interconnect_2_hps_0_f2h_axi_slave_rready),  //                                                              .rready
 		.clk_0_clk_clk                                                       (clk_clk),                                       //                                                     clk_0_clk.clk
-		.hps_0_f2h_axi_slave_agent_reset_sink_reset_bridge_in_reset_reset    (rst_controller_001_reset_out_reset),            //    hps_0_f2h_axi_slave_agent_reset_sink_reset_bridge_in_reset.reset
+		.hps_0_f2h_axi_slave_agent_reset_sink_reset_bridge_in_reset_reset    (rst_controller_002_reset_out_reset),            //    hps_0_f2h_axi_slave_agent_reset_sink_reset_bridge_in_reset.reset
 		.hps_only_master_clk_reset_reset_bridge_in_reset_reset               (rst_controller_reset_out_reset),                //               hps_only_master_clk_reset_reset_bridge_in_reset.reset
 		.hps_only_master_master_translator_reset_reset_bridge_in_reset_reset (rst_controller_reset_out_reset),                // hps_only_master_master_translator_reset_reset_bridge_in_reset.reset
 		.hps_only_master_master_address                                      (hps_only_master_master_address),                //                                        hps_only_master_master.address
@@ -850,7 +854,7 @@ module soc_system (
 		.clk_0_clk_clk                                                           (clk_clk),                                               //                                                         clk_0_clk.clk
 		.f2sdram_only_master_clk_reset_reset_bridge_in_reset_reset               (rst_controller_reset_out_reset),                        //               f2sdram_only_master_clk_reset_reset_bridge_in_reset.reset
 		.f2sdram_only_master_master_translator_reset_reset_bridge_in_reset_reset (rst_controller_reset_out_reset),                        // f2sdram_only_master_master_translator_reset_reset_bridge_in_reset.reset
-		.hps_0_f2h_sdram0_data_translator_reset_reset_bridge_in_reset_reset      (rst_controller_001_reset_out_reset),                    //      hps_0_f2h_sdram0_data_translator_reset_reset_bridge_in_reset.reset
+		.hps_0_f2h_sdram0_data_translator_reset_reset_bridge_in_reset_reset      (rst_controller_002_reset_out_reset),                    //      hps_0_f2h_sdram0_data_translator_reset_reset_bridge_in_reset.reset
 		.f2sdram_only_master_master_address                                      (f2sdram_only_master_master_address),                    //                                        f2sdram_only_master_master.address
 		.f2sdram_only_master_master_waitrequest                                  (f2sdram_only_master_master_waitrequest),                //                                                                  .waitrequest
 		.f2sdram_only_master_master_byteenable                                   (f2sdram_only_master_master_byteenable),                 //                                                                  .byteenable
@@ -958,6 +962,69 @@ module soc_system (
 	);
 
 	altera_reset_controller #(
+		.NUM_RESET_INPUTS          (2),
+		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
+		.SYNC_DEPTH                (2),
+		.RESET_REQUEST_PRESENT     (1),
+		.RESET_REQ_WAIT_TIME       (1),
+		.MIN_RST_ASSERTION_TIME    (3),
+		.RESET_REQ_EARLY_DSRT_TIME (1),
+		.USE_RESET_REQUEST_IN0     (0),
+		.USE_RESET_REQUEST_IN1     (0),
+		.USE_RESET_REQUEST_IN2     (0),
+		.USE_RESET_REQUEST_IN3     (0),
+		.USE_RESET_REQUEST_IN4     (0),
+		.USE_RESET_REQUEST_IN5     (0),
+		.USE_RESET_REQUEST_IN6     (0),
+		.USE_RESET_REQUEST_IN7     (0),
+		.USE_RESET_REQUEST_IN8     (0),
+		.USE_RESET_REQUEST_IN9     (0),
+		.USE_RESET_REQUEST_IN10    (0),
+		.USE_RESET_REQUEST_IN11    (0),
+		.USE_RESET_REQUEST_IN12    (0),
+		.USE_RESET_REQUEST_IN13    (0),
+		.USE_RESET_REQUEST_IN14    (0),
+		.USE_RESET_REQUEST_IN15    (0),
+		.ADAPT_RESET_REQUEST       (0)
+	) rst_controller_001 (
+		.reset_in0      (~reset_reset_n),                         // reset_in0.reset
+		.reset_in1      (~spectrum_reset_reset_n),                // reset_in1.reset
+		.clk            (spectrum_clock_clk),                     //       clk.clk
+		.reset_out      (rst_controller_001_reset_out_reset),     // reset_out.reset
+		.reset_req      (rst_controller_001_reset_out_reset_req), //          .reset_req
+		.reset_req_in0  (1'b0),                                   // (terminated)
+		.reset_req_in1  (1'b0),                                   // (terminated)
+		.reset_in2      (1'b0),                                   // (terminated)
+		.reset_req_in2  (1'b0),                                   // (terminated)
+		.reset_in3      (1'b0),                                   // (terminated)
+		.reset_req_in3  (1'b0),                                   // (terminated)
+		.reset_in4      (1'b0),                                   // (terminated)
+		.reset_req_in4  (1'b0),                                   // (terminated)
+		.reset_in5      (1'b0),                                   // (terminated)
+		.reset_req_in5  (1'b0),                                   // (terminated)
+		.reset_in6      (1'b0),                                   // (terminated)
+		.reset_req_in6  (1'b0),                                   // (terminated)
+		.reset_in7      (1'b0),                                   // (terminated)
+		.reset_req_in7  (1'b0),                                   // (terminated)
+		.reset_in8      (1'b0),                                   // (terminated)
+		.reset_req_in8  (1'b0),                                   // (terminated)
+		.reset_in9      (1'b0),                                   // (terminated)
+		.reset_req_in9  (1'b0),                                   // (terminated)
+		.reset_in10     (1'b0),                                   // (terminated)
+		.reset_req_in10 (1'b0),                                   // (terminated)
+		.reset_in11     (1'b0),                                   // (terminated)
+		.reset_req_in11 (1'b0),                                   // (terminated)
+		.reset_in12     (1'b0),                                   // (terminated)
+		.reset_req_in12 (1'b0),                                   // (terminated)
+		.reset_in13     (1'b0),                                   // (terminated)
+		.reset_req_in13 (1'b0),                                   // (terminated)
+		.reset_in14     (1'b0),                                   // (terminated)
+		.reset_req_in14 (1'b0),                                   // (terminated)
+		.reset_in15     (1'b0),                                   // (terminated)
+		.reset_req_in15 (1'b0)                                    // (terminated)
+	);
+
+	altera_reset_controller #(
 		.NUM_RESET_INPUTS          (1),
 		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
 		.SYNC_DEPTH                (2),
@@ -982,10 +1049,10 @@ module soc_system (
 		.USE_RESET_REQUEST_IN14    (0),
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
-	) rst_controller_001 (
+	) rst_controller_002 (
 		.reset_in0      (~hps_0_h2f_reset_reset_n),           // reset_in0.reset
 		.clk            (clk_clk),                            //       clk.clk
-		.reset_out      (rst_controller_001_reset_out_reset), // reset_out.reset
+		.reset_out      (rst_controller_002_reset_out_reset), // reset_out.reset
 		.reset_req      (),                                   // (terminated)
 		.reset_req_in0  (1'b0),                               // (terminated)
 		.reset_in1      (1'b0),                               // (terminated)
