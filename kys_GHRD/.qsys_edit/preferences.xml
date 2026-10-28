@@ -3,11 +3,10 @@
  <debug showDebugMenu="0" />
  <systemtable filter="All Interfaces">
   <columns>
-   <connections preferredWidth="303" />
-   <irq preferredWidth="63" />
+   <connections preferredWidth="47" />
+   <irq preferredWidth="34" />
   </columns>
  </systemtable>
- <library
-   expandedCategories="Library/Basic Functions/Clocks; PLLs and Resets,Library/Basic Functions/Simulation; Debug and Verification,Project,Library/Basic Functions/Simulation; Debug and Verification/Simulation,Library,Library/Basic Functions" />
- <window width="2576" height="1408" x="-8" y="-8" />
+ <library expandedCategories="Project,Library" />
+ <window width="1920" height="1020" x="0" y="0" />
 </preferences>

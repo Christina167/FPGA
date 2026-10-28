@@ -1359,11 +1359,6 @@
  <connection
    kind="reset"
    version="20.1"
-   start="clk_0.clk_reset"
-   end="onchip_memory2_0.reset1" />
- <connection
-   kind="reset"
-   version="20.1"
    start="clk_65_0.clk_reset"
    end="onchip_memory2_0.reset1" />
  <connection
